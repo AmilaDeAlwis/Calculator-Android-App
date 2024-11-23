@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
         TextView screen = findViewById(R.id.screen);
 
+        ac.setOnClickListener(view -> {
+            firstNum = 0;
+            screen.setText("0");
+        });
+
         off.setOnClickListener(view -> screen.setVisibility(View.GONE));
         on.setOnClickListener(view -> {
             screen.setVisibility(View.VISIBLE);
