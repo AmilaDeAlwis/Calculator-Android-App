@@ -77,5 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        ArrayList<Button> op = new ArrayList<>();
+        op.add(add);
+        op.add(sub);
+        op.add(mul);
+        op.add(div);
     }
 }
