@@ -64,21 +64,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         ArrayList<Button> nums = new ArrayList<>();
-        nums.add(num0);
-        nums.add(num1);
-        nums.add(num2);
-        nums.add(num3);
-        nums.add(num4);
-        nums.add(num5);
-        nums.add(num6);
-        nums.add(num7);
-        nums.add(num8);
-        nums.add(num9);
+        nums.add(findViewById(R.id.num0));
+        nums.add(findViewById(R.id.num1));
+        nums.add(findViewById(R.id.num2));
+        nums.add(findViewById(R.id.num3));
+        nums.add(findViewById(R.id.num4));
+        nums.add(findViewById(R.id.num5));
+        nums.add(findViewById(R.id.num6));
+        nums.add(findViewById(R.id.num7));
+        nums.add(findViewById(R.id.num8));
+        nums.add(findViewById(R.id.num9));
 
         for (Button b : nums) {
             b.setOnClickListener(view -> {
-                if (!screen.getText().toString().equals("0")) {
-                    screen.setText(screen.getText().toString() + b.getText().toString());
+                String currentText = screen.getText().toString();
+                if (!currentText.equals("0")) {
+                    screen.setText(currentText + b.getText().toString());
                 } else {
                     screen.setText(b.getText().toString());
                 }
@@ -86,16 +87,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         ArrayList<Button> op = new ArrayList<>();
-        op.add(add);
-        op.add(sub);
-        op.add(mul);
-        op.add(div);
+        op.add(findViewById(R.id.add));
+        op.add(findViewById(R.id.sub));
+        op.add(findViewById(R.id.mul));
+        op.add(findViewById(R.id.div));
 
         for (Button b : op) {
             b.setOnClickListener(view -> {
-                firstNum = Double.parseDouble(screen.getText().toString());
-                operation = b.getText().toString();
-                screen.setText("0 ");
+                try {
+                    firstNum = Double.parseDouble(screen.getText().toString());
+                    operation = b.getText().toString();
+                    screen.setText("0 ");
+                } catch (NumberFormatException e) {
+                    screen.setText("Error");
+                }
             });
         }
 
@@ -115,26 +120,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         equal.setOnClickListener(view -> {
-            double secondNum = Double.parseDouble(screen.getText().toString());
-            double result;
-            switch (operation) {
-                case "+":
-                    result = firstNum+secondNum;
-                    break;
-                case "-":
-                    result = firstNum-secondNum;
-                    break;
-                case "X":
-                    result = firstNum*secondNum;
-                    break;
-                case "/":
-                    result = firstNum/secondNum;
-                    break;
-                default:
-                    result = firstNum+secondNum;
+            try {
+                double secondNum = Double.parseDouble(screen.getText().toString());
+                double result;
+                switch (operation) {
+                    case "+":
+                        result = firstNum + secondNum;
+                        break;
+                    case "-":
+                        result = firstNum - secondNum;
+                        break;
+                    case "X":
+                        result = firstNum * secondNum;
+                        break;
+                    case "/":
+                        if (secondNum != 0) {
+                            result = firstNum / secondNum;
+                        } else {
+                            screen.setText("Error");
+                            return;
+                        }
+                        break;
+                    default:
+                        screen.setText("Error");
+                        return;
+                }
+                screen.setText(String.valueOf(result));
+            } catch (NumberFormatException e) {
+                screen.setText("Error");
             }
-            screen.setText(String.valueOf(result));
-            firstNum = result;
         });
     }
 }

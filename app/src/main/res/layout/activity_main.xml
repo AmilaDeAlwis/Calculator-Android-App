@@ -19,7 +19,7 @@
         android:textColor="#FFFFFF"
         android:paddingHorizontal="15dp"
         android:paddingVertical="35dp"
-        android:layout_above="@+id/nums" />
+        android:layout_above="@id/nums" />
 
     <LinearLayout
         android:id="@+id/nums"
@@ -45,7 +45,7 @@
                 style="@style/Button2" />
             <Button
                 android:id="@+id/num4"
-                android:text="7"
+                android:text="4"
                 style="@style/Button2" />
             <Button
                 android:id="@+id/num1"
