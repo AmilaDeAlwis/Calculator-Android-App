@@ -14,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    double firstNum;
+    String operation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,5 +85,13 @@ public class MainActivity extends AppCompatActivity {
         op.add(sub);
         op.add(mul);
         op.add(div);
+
+        for (Button b : op) {
+            b.setOnClickListener(view -> {
+                firstNum = Double.parseDouble(screen.getText().toString());
+                operation = b.getText().toString();
+                screen.setText("0 ");
+            });
+        }
     }
 }
