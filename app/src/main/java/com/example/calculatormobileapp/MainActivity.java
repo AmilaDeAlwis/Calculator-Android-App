@@ -55,5 +55,27 @@ public class MainActivity extends AppCompatActivity {
             screen.setVisibility(View.VISIBLE);
             screen.setText("0");
         });
+
+        ArrayList<Button> nums = new ArrayList<>();
+        nums.add(num0);
+        nums.add(num1);
+        nums.add(num2);
+        nums.add(num3);
+        nums.add(num4);
+        nums.add(num5);
+        nums.add(num6);
+        nums.add(num7);
+        nums.add(num8);
+        nums.add(num9);
+
+        for (Button b : nums) {
+            b.setOnClickListener(view -> {
+                if (!screen.getText().toString().equals("0")) {
+                    screen.setText(screen.getText().toString() + b.getText().toString());
+                } else {
+                    screen.setText(b.getText().toString());
+                }
+            });
+        }
     }
 }
