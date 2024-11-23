@@ -108,5 +108,28 @@ public class MainActivity extends AppCompatActivity {
                 screen.setText(screen.getText().toString() + ".");
             }
         });
+
+        equal.setOnClickListener(view -> {
+            double secondNum = Double.parseDouble(screen.getText().toString());
+            double result;
+            switch (operation) {
+                case "+":
+                    result = firstNum+secondNum;
+                    break;
+                case "-":
+                    result = firstNum-secondNum;
+                    break;
+                case "X":
+                    result = firstNum*secondNum;
+                    break;
+                case "/":
+                    result = firstNum/secondNum;
+                    break;
+                default:
+                    result = firstNum+secondNum;
+            }
+            screen.setText(String.valueOf(result));
+            firstNum = result;
+        });
     }
 }
