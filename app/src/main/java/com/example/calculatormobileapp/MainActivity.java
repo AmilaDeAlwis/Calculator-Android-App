@@ -102,5 +102,11 @@ public class MainActivity extends AppCompatActivity {
                 screen.setText("0");
             }
         });
+
+        period.setOnClickListener(view -> {
+            if (!screen.getText().toString().contains(".")) {
+                screen.setText(screen.getText().toString() + ".");
+            }
+        });
     }
 }
