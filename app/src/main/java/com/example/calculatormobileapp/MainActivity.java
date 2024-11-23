@@ -93,5 +93,14 @@ public class MainActivity extends AppCompatActivity {
                 screen.setText("0 ");
             });
         }
+
+        del.setOnClickListener(view -> {
+            String num = screen.getText().toString();
+            if (num.length()>1) {
+                screen.setText(num.substring(0, num.length()-1));
+            } else if (num.length() == 1 && !num.equals("0")) {
+                screen.setText("0");
+            }
+        });
     }
 }
